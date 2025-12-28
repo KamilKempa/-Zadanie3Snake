@@ -187,25 +187,43 @@ class Program
             tail.Insert(0, (hoofd.xPos, hoofd.yPos));
 
 
-            if (tail.Count > 5) // 5 = długość ogona (na razie stała)
+            // jeśli NIE zjedzono → normalny ruch: usuń koniec ogona
+
+            if (!increaseTail)
+
+            {
+  
+                if (tail.Count > 0) // zabezpieczenie przed błędem
+
+                    tail.RemoveAt(tail.Count - 1);
+
+            }
+
+            else
 
             {
 
-            tail.RemoveAt(tail.Count - 1);
+                // jeśli zjedzono → ogon rośnie (nie usuwamy)
+
+                increaseTail = false;
+
             }
+
             //Hindernis treffen
 
-            if (hoofd.xPos == obstacleXpos && hoofd.yPos == obstacleYpos)
+           if (hoofd.xPos == obstacleXpos && hoofd.yPos == obstacleYpos)
 
-            {
+           {
+  
+               score++;
+   
+               increaseTail = true; // 🔥 SYGNAŁ ŻE OGON MA UROSNĄĆ
+   
+               obstacleXpos = randomnummer.Next(1, screenwidth);
+    
+               obstacleYpos = randomnummer.Next(1, screenheight);
 
-                score++;
-
-                obstacleXpos = randomnummer.Next(1, screenwidth);
-
-                obstacleYpos = randomnummer.Next(1, screenheight);
-
-            }
+           }
 
         
             //Kollision mit Wände oder mit sich selbst
