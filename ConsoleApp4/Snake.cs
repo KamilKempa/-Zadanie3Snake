@@ -34,6 +34,7 @@ class Program
 
         int score = 0;
 
+        bool increaseTail = false;
         
         DateTime tijd = DateTime.Now;
 
@@ -186,6 +187,19 @@ class Program
 
             tail.Insert(0, (hoofd.xPos, hoofd.yPos));
 
+            if (hoofd.xPos == obstacleXpos && hoofd.yPos == obstacleYpos)
+
+            {
+ 
+                score++;
+ 
+                increaseTail = true;
+  
+                obstacleXpos = randomnummer.Next(1, screenwidth);
+ 
+                obstacleYpos = randomnummer.Next(1, screenheight);
+
+            }
 
             // jeśli NIE zjedzono → normalny ruch: usuń koniec ogona
 
@@ -209,21 +223,7 @@ class Program
 
             }
 
-            //Hindernis treffen
-
-           if (hoofd.xPos == obstacleXpos && hoofd.yPos == obstacleYpos)
-
-           {
-  
-               score++;
-   
-               increaseTail = true; // 🔥 SYGNAŁ ŻE OGON MA UROSNĄĆ
-   
-               obstacleXpos = randomnummer.Next(1, screenwidth);
     
-               obstacleYpos = randomnummer.Next(1, screenheight);
-
-           }
 
         
             //Kollision mit Wände oder mit sich selbst
