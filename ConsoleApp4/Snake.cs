@@ -35,12 +35,6 @@ class Program
         int score = 0;
 
 
-        hoofd.xPos = screenwidth / 2;
-
-        hoofd.yPos = screenheight / 2;
-
-        hoofd.schermKleur = ConsoleColor.Red;
-
 
 
         List<int> teljePositie = new List<int>();
