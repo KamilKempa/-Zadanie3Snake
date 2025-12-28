@@ -207,9 +207,19 @@ class Program
  
                 increaseTail = true;
   
-                obstacleXpos = randomnummer.Next(1, screenwidth);
- 
-                obstacleYpos = randomnummer.Next(1, screenheight);
+                do
+
+                {
+    
+                    obstacleXpos = randomnummer.Next(1, screenwidth - 1);
+   
+                    obstacleYpos = randomnummer.Next(1, screenheight - 1);
+
+                }
+
+                while (tail.Any(p => p.x == obstacleXpos && p.y == obstacleYpos) 
+  
+                       || (hoofd.xPos == obstacleXpos && hoofd.yPos == obstacleYpos));
 
                 int newDangerX = randomnummer.Next(1, screenwidth - 2);
                 int newDangerY = randomnummer.Next(1, screenheight - 2);
