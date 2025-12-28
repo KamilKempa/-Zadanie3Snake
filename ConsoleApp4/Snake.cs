@@ -145,17 +145,7 @@ class Program
 
             Console.Write("■");
 
-            Console.SetCursorPosition(hoofd.xPos, hoofd.yPos);
-
-            Console.Write("■");
-
-            Console.SetCursorPosition(hoofd.xPos, hoofd.yPos);
-
-            Console.Write("■");
-
-            Console.SetCursorPosition(hoofd.xPos, hoofd.yPos);
-
-            Console.Write("■");
+            
 
 
 
