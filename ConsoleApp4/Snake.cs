@@ -34,19 +34,7 @@ class Program
 
         int score = 0;
 
-
-
-
-        List<int> teljePositie = new List<int>();
-
-
-
-        teljePositie.Add(hoofd.xPos);
-
-        teljePositie.Add(hoofd.yPos);
-
-
-
+        
         DateTime tijd = DateTime.Now;
 
         string obstacle = "*";
@@ -127,17 +115,7 @@ class Program
 
             Console.ForegroundColor = ConsoleColor.White;
 
-            Console.Write("H");
-
-            for (int i = 0; i < telje.Count(); i++)
-
-            {
-
-                Console.SetCursorPosition(telje[i], telje[i + 1]);
-
-                Console.Write("■");
-
-            }
+            
 
             //Draw Snake
 
@@ -229,12 +207,7 @@ class Program
 
             }
 
-            tail.Insert(0, (hoofd.xPos, hoofd.yPos));
-
-            teljePositie.RemoveAt(teljePositie.Count - 1);
-
-            teljePositie.RemoveAt(teljePositie.Count - 1);
-
+        
             //Kollision mit Wände oder mit sich selbst
 
             if (hoofd.xPos == 0 || hoofd.xPos == screenwidth - 1 || hoofd.yPos == 0 || hoofd.yPos == screenheight - 1)
@@ -259,33 +232,25 @@ class Program
 
             }
 
-            for (int i = 0; i < telje.Count(); i += 2)
+            foreach (var part in tail.Skip(1)) // pomijamy głowę
 
             {
-
-                if (hoofd.xPos == telje[i] && hoofd.yPos == telje[i + 1])
-
+    
+                if (part.x == hoofd.xPos && part.y == hoofd.yPos)
+    
                 {
-
                     Console.Clear();
-
                     Console.ForegroundColor = ConsoleColor.Red;
-
                     Console.SetCursorPosition(screenwidth / 5, screenheight / 2);
-
-                   //???
-
+                    Console.WriteLine("Game Over - Uderzyłeś w ogon!");
                     Console.SetCursorPosition(screenwidth / 5, screenheight / 2 + 1);
-
-                    Console.WriteLine("Dein Score ist: " + score);
-
-                    Console.SetCursorPosition(screenwidth / 5, screenheight / 2 + 2);
-
+                    Console.WriteLine("Wynik: " + score);
                     Environment.Exit(0);
-
+    
                 }
 
             }
+            
 
             Thread.Sleep(50);
 
