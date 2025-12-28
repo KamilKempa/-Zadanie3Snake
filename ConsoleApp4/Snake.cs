@@ -10,6 +10,7 @@ class Program
     static void Main()
 
     {
+        Pixel hoofd = new Pixel();
 
         Console.WindowHeight = 16;
 
@@ -21,11 +22,11 @@ class Program
 
         Random randomnummer = new Random();
 
-        hoofd.xpos = screenwidth / 2;
+        hoofd.xPos = screenwidth / 2;
 
-        hoofd.ypos = screenheight / 2;
+        hoofd.yPos = screenheight / 2;
 
-        hoofd.schermkleur = ConsoleColor.Red;
+        hoofd.schermKleur = ConsoleColor.Red;
 
         string movement = "RIGHT";
 
@@ -33,7 +34,6 @@ class Program
 
         int score = 0;
 
-        Pixel hoofd = new Pixel();
 
         hoofd.xPos = screenwidth / 2;
 
