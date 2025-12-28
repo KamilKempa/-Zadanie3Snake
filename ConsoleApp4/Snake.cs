@@ -44,6 +44,13 @@ class Program
 
         int obstacleYpos = randomnummer.Next(1, screenheight);
 
+        List<(int x, int y)> dangerObstacles = new List<(int x, int y)>();
+        string dangerObstacle = "■";
+
+        int dangerXpos = randomnummer.Next(1, screenwidth - 2);
+
+        int dangerYpos = randomnummer.Next(1, screenheight - 2);
+
         while (true)
 
         {
@@ -58,7 +65,13 @@ class Program
 
             Console.Write(obstacle);
 
-
+            // Draw Danger Obstacle
+            Console.ForegroundColor = ConsoleColor.Red;
+            foreach (var danger in dangerObstacles)
+            {
+                Console.SetCursorPosition(danger.x, danger.y);
+                Console.Write(dangerObstacle);
+            }
 
             Console.ForegroundColor = ConsoleColor.Green;
 
@@ -188,7 +201,6 @@ class Program
             tail.Insert(0, (hoofd.xPos, hoofd.yPos));
 
             if (hoofd.xPos == obstacleXpos && hoofd.yPos == obstacleYpos)
-
             {
  
                 score++;
@@ -199,6 +211,10 @@ class Program
  
                 obstacleYpos = randomnummer.Next(1, screenheight);
 
+                int newDangerX = randomnummer.Next(1, screenwidth - 2);
+                int newDangerY = randomnummer.Next(1, screenheight - 2);
+                dangerObstacles.Add((newDangerX, newDangerY));
+            
             }
 
             // jeśli NIE zjedzono → normalny ruch: usuń koniec ogona
@@ -223,9 +239,22 @@ class Program
 
             }
 
-    
+            // Kolizja z niebezpieczną przeszkodą
+            foreach (var danger in dangerObstacles)
+            {
+                if (hoofd.xPos == danger.x && hoofd.yPos == danger.y)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(screenwidth / 5, screenheight / 2);
+                    Console.WriteLine("Game Over - Trafiłeś w przeszkodę!");
+                    Console.SetCursorPosition(screenwidth / 5, screenheight / 2 + 1);
+                    Console.WriteLine("Twój wynik: " + score);
+                    Environment.Exit(0);
+                }
+            }
 
-        
+
             //Kollision mit Wände oder mit sich selbst
 
             if (hoofd.xPos == 0 || hoofd.xPos == screenwidth - 1 || hoofd.yPos == 0 || hoofd.yPos == screenheight - 1)
