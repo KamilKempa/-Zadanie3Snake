@@ -30,7 +30,7 @@ class Program
 
         string movement = "RIGHT";
 
-        List<int> telje = new List<int>();
+        List<(int x, int y)> tail = new List<(int x, int y)>();
 
         int score = 0;
 
@@ -145,7 +145,14 @@ class Program
 
             Console.Write("■");
 
-            
+            foreach (var part in tail)
+
+            {
+    
+            Console.SetCursorPosition(part.x, part.y);
+            Console.Write("■");
+
+            }
 
 
 
@@ -199,6 +206,15 @@ class Program
 
                 hoofd.xPos++;
 
+            tail.Insert(0, (hoofd.xPos, hoofd.yPos));
+
+
+            if (tail.Count > 5) // 5 = długość ogona (na razie stała)
+
+            {
+
+            tail.RemoveAt(tail.Count - 1);
+            }
             //Hindernis treffen
 
             if (hoofd.xPos == obstacleXpos && hoofd.yPos == obstacleYpos)
@@ -213,9 +229,7 @@ class Program
 
             }
 
-            teljePositie.Insert(0, hoofd.xPos);
-
-            teljePositie.Insert(1, hoofd.yPos);
+            tail.Insert(0, (hoofd.xPos, hoofd.yPos));
 
             teljePositie.RemoveAt(teljePositie.Count - 1);
 
