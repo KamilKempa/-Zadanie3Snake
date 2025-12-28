@@ -21,8 +21,6 @@ class Program
 
         Random randomnummer = new Random();
 
-        pixel hoofd = new pixel();
-
         hoofd.xpos = screenwidth / 2;
 
         hoofd.ypos = screenheight / 2;
